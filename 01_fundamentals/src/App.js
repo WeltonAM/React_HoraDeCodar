@@ -1,5 +1,6 @@
 // CSS
 import './App.css';
+import Challenge from './components/Challenge';
 import Events from './components/Events';
 
 // Components
@@ -15,6 +16,11 @@ function App() {
       <TemplateExpressions />
       <MyComponent />
       <Events />
+      
+      <hr />
+      <p>Module challenge</p>
+      <Challenge />
+
     </div>
   );
 }
