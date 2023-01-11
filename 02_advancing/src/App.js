@@ -1,6 +1,7 @@
 import './App.css';
 
 import CountryPhoto from './assets/img/pic1.jpg'
+import ConditionalRender from './components/ConditionalRender';
 import ListRender from './components/ListRender';
 import ManageData from './components/ManageData';
 
@@ -17,6 +18,8 @@ function App() {
       <ManageData />
 
       <ListRender />
+
+      <ConditionalRender />
 
     </div>
   );
