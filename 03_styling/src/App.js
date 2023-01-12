@@ -1,6 +1,7 @@
 import './App.css';
 import Inline from './components/Inline';
 import MyComponent from './components/MyComponent';
+import Title from './components/Title';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       {/* CSS inline */}
       <Inline />
 
-      
+      {/* CSS module */}
+      <Title />
     </div>
   );
 }
