@@ -25,7 +25,9 @@ function App() {
 
       <ShowUserName name="Juliana" />
 
-      <CarDetails brand="Chav" km={100.000} color="Blue" />
+      <CarDetails brand="Chav" km={100.000} color="Blue" newCar={false} />
+
+      <CarDetails brand="Ford" km={0} color="Blue" newCar={true} />
 
     </div>
   );
