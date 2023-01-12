@@ -8,6 +8,7 @@ const ManageData = () => {
 
     return (
         <div>
+            <hr />
             <div>
                 <p>Value: {10}</p>
                 <button onClick={() => (someData = 15)}>Change</button>

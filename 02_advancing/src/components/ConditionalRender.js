@@ -8,6 +8,7 @@ const ConditionalRender = () => {
 
     return (
         <div>
+            <hr />
             <div>
                 <h3>Who will be render?</h3>
                 {x && <p>If 'x' is true, me!</p>}
