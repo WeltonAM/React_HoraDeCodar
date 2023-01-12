@@ -3,6 +3,7 @@ import './App.css';
 import CountryPhoto from './assets/img/pic1.jpg'
 import CarDetails from './components/CarDetails';
 import ConditionalRender from './components/ConditionalRender';
+import Fragment from './components/Fragment';
 import ListRender from './components/ListRender';
 import ManageData from './components/ManageData';
 import ShowUserName from './components/ShowUserName';
@@ -40,6 +41,8 @@ function App() {
       {cars.map((car) => (
         <CarDetails brand={car.brand} color={car.color} km={car.km} newCar={car.newCar} />
       ))}
+
+      <Fragment />
 
     </div>
   );
