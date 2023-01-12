@@ -1,4 +1,5 @@
 import './App.css';
+import Inline from './components/Inline';
 import MyComponent from './components/MyComponent';
 
 function App() {
@@ -11,6 +12,10 @@ function App() {
       {/* CSS Component */}
       <MyComponent />
 
+      {/* CSS inline */}
+      <Inline />
+
+      
     </div>
   );
 }
