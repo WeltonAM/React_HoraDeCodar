@@ -1,6 +1,7 @@
 import './App.css';
 
 import CountryPhoto from './assets/img/pic1.jpg'
+import CarDetails from './components/CarDetails';
 import ConditionalRender from './components/ConditionalRender';
 import ListRender from './components/ListRender';
 import ManageData from './components/ManageData';
@@ -22,7 +23,9 @@ function App() {
 
       <ConditionalRender />
 
-      <ShowUserName name="Juliana" age="27" />
+      <ShowUserName name="Juliana" />
+
+      <CarDetails brand="Chav" km={100.000} color="Blue" />
 
     </div>
   );
