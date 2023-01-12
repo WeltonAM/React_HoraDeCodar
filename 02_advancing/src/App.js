@@ -3,6 +3,7 @@ import './App.css';
 import CountryPhoto from './assets/img/pic1.jpg'
 import CarDetails from './components/CarDetails';
 import ConditionalRender from './components/ConditionalRender';
+import Container from './components/Container';
 import Fragment from './components/Fragment';
 import ListRender from './components/ListRender';
 import ManageData from './components/ManageData';
@@ -43,6 +44,10 @@ function App() {
       ))}
 
       <Fragment />
+
+      <Container>
+        <p>Child component</p>
+      </Container>
 
     </div>
   );
