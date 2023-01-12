@@ -1,4 +1,5 @@
 import './App.css';
+import Challenge from './components/Challenge';
 import Inline from './components/Inline';
 import MyComponent from './components/MyComponent';
 import Title from './components/Title';
@@ -18,6 +19,9 @@ function App() {
 
       {/* CSS module */}
       <Title />
+
+      {/* CSS challenge */}
+      <Challenge/>
     </div>
   );
 }
