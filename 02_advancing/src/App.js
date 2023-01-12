@@ -10,6 +10,8 @@ import ExecutingFunc from './components/ExecutingFunc';
 import Fragment from './components/Fragment';
 import ListRender from './components/ListRender';
 import ManageData from './components/ManageData';
+import Message from './components/Message';
+import ChangeMsgState from './components/ChangeMsgState';
 import ShowUserName from './components/ShowUserName';
 
 function App() {
@@ -27,7 +29,7 @@ function App() {
 
   const [message, setMessage] = useState("")
 
-  const handleMgs = (msg) => {
+  const handleMsg = (msg) => {
     setMessage(msg)
   }
 
@@ -46,27 +48,34 @@ function App() {
 
       <ConditionalRender />
 
+      {/* Use props */}
       <ShowUserName name="Juliana" />
 
+      {/* Destructuring props */}
       <CarDetails brand="Chav" km={100.000} color="Blue" newCar={false} />
 
+      {/* Reuse comp */}
       <CarDetails brand="Ford" km={0} color="Blue" newCar={true} />
 
+      {/* Reuse comp by loop */}
       {cars.map((car) => (
         <CarDetails key={car.id} brand={car.brand} color={car.color} km={car.km} newCar={car.newCar} />
       ))}
 
+      {/* Component direct to the "App" */}
       <Fragment />
 
+      {/* Children concept */}
       <Container>
         <p>Child component</p>
       </Container>
 
-      
-
+      {/* Executing func from parent */}
       <ExecutingFunc myFunction={showMessage} />
 
       {/* State lift */}
+      <Message msg={message} />
+      <ChangeMsgState handleMsg={handleMsg} />
 
     </div>
   );
