@@ -8,6 +8,14 @@ import ManageData from './components/ManageData';
 import ShowUserName from './components/ShowUserName';
 
 function App() {
+
+  const cars = [
+    {id: 1, brand: "Ford", color: "Yellow", km: 10, newCar: false },
+    {id: 2, brand: "VW", color: "Blue", km: 110, newCar: false },
+    {id: 3, brand: "Chav", color: "Black", km: 11230, newCar: false },
+    {id: 4, brand: "Renault", color: "Red", km: 0, newCar: true },
+  ]
+
   return (
     <div className="App">
 
@@ -28,6 +36,10 @@ function App() {
       <CarDetails brand="Chav" km={100.000} color="Blue" newCar={false} />
 
       <CarDetails brand="Ford" km={0} color="Blue" newCar={true} />
+      
+      {cars.map((car) => (
+        <CarDetails brand={car.brand} color={car.color} km={car.km} newCar={car.newCar} />
+      ))}
 
     </div>
   );
