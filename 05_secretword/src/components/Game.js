@@ -4,8 +4,8 @@ import './Game.css'
 
 const Game = ({
     verifyLetter,
-    pickedWords,
     pickedCategory,
+    pickedWords,
     letters,
     guessedLetters,
     wrongLetters,
@@ -66,7 +66,7 @@ const Game = ({
                         value={letter}
                         ref={letterInputRef}
                     />
-                    <button type="">Jogar</button>
+                    <button className='play-btn' type="">Jogar</button>
                 </form>
             </div>
 

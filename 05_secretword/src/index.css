@@ -11,7 +11,7 @@ body{
     color: #ddd;
 }
 
-button{
+.play-btn{
     background: #ce7e04;
     padding: 0 40px;
     border: 2px solid #ddd;
@@ -25,6 +25,6 @@ button{
     transition: 0.4s;
 }
 
-button:hover{
+.play-btn:hover{
     background-color: #ff9900;
 }
