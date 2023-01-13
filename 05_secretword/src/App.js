@@ -30,7 +30,7 @@ function App() {
   const [pickedWord, setPickedWord] = useState("")
   const [pickedCategory, setPickedCategory] = useState("")
   const [letters, setLetters] = useState([])
-  const [guessedLetters, setGuessedLetters] = useState([null])
+  const [guessedLetters, setGuessedLetters] = useState([])
   const [wrongLetters, setWrongLetters] = useState([])
   const [guesses, setGuesses] = useState(guessesAty)
   const [score, setScore] = useState(0)
@@ -89,7 +89,7 @@ function App() {
   }
 
   const clearLetterStates = () => {
-    setGuessedLetters([null])
+    setGuessedLetters([])
     setWrongLetters([])
   }
 
@@ -114,7 +114,7 @@ function App() {
 
     const uniqueLetters = [...new Set(letters)]
 
-    if(guessedLetters.length === uniqueLetters.length){
+    if(guessedLetters.length === uniqueLetters.length && uniqueLetters.length !== 0){
       setScore((actualScore) => actualScore += 100)
      
       toast('🥳 🎉 YES!')
