@@ -38,7 +38,7 @@ const Game = ({
             <h3 className='tip'>
                 Dica: <span>{pickedCategory}</span>
             </h3>
-            <p>Você ainda tem {guesses} tentaiva(s).</p>
+            <p>Você tem {guesses} tentativa(s)</p>
 
             <div className='wordContainer'>
                 {letters.map((letter, i) => (
@@ -57,6 +57,8 @@ const Game = ({
                 <form onSubmit={handleSubmit}>
                     <input
                         type="text"
+                        pattern="[A-Za-zç]" 
+                        title="Somente letras"
                         name="letter"
                         maxLength="1"
                         required
