@@ -1,20 +1,29 @@
 {
-    "products": 
-    [
-        {
-            "id": 1,
-            "name": "T-shirt",
-            "price": 59.9
-        },
-        {
-            "id": 2,
-            "name": "Red Pants",
-            "price": 90
-        },
-        {
-            "id": 3,
-            "name": "Cap",
-            "price": 29.9
-        }
-    ]
+  "products": [
+    {
+      "id": 1,
+      "name": "T-shirt",
+      "price": 59.9
+    },
+    {
+      "id": 2,
+      "name": "Red Pants",
+      "price": 90
+    },
+    {
+      "id": 3,
+      "name": "Cap",
+      "price": 29.9
+    },
+    {
+      "name": "Shoes",
+      "price": "123.99",
+      "id": 4
+    },
+    {
+      "name": "Socks",
+      "price": "8.99",
+      "id": 5
+    }
+  ]
 }
