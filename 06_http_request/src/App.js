@@ -26,7 +26,7 @@ function App() {
   //   fetchData()
   // }, [])
 
-  const { data: items, httpConfig, loading } = useFetch(url)
+  const { data: items, httpConfig, loading, errors } = useFetch(url)
 
   // Posting data
   const handleSubmit = async (e) => {
@@ -63,12 +63,15 @@ function App() {
       <h1>Products list</h1>
 
       {loading && <p>Loading data...</p>}
+      {errors && <p>{errors}</p>}
+      {!errors &&
+        <ul style={{ listStyle: 'none', padding: '0' }}>
+          {items && items.map((product) => (
+            <li key={product.id}>{product.name} - R$: {product.price}</li>
+          ))}
+        </ul>
 
-      <ul style={{ listStyle: 'none', padding: '0' }}>
-        {items && items.map((product) => (
-          <li key={product.id}>{product.name} - R$: {product.price}</li>
-        ))}
-      </ul>
+      }
 
       <div className='add-product'>
         <form onSubmit={handleSubmit}>
@@ -82,7 +85,8 @@ function App() {
             <input type="number" name="price" value={price} onChange={(e) => setPrice(e.target.value)} />
           </label>
 
-          <input type="submit" value="Create" />
+          {loading && <input type="submit" value="Sending..." />}
+          {!loading && <input type="submit" value="Create" />}
         </form>
       </div>
 

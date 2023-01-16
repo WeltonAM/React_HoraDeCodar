@@ -11,8 +11,12 @@ export const useFetch = (url) => {
     // loading
     const [loading, setLoading] = useState(false)
 
+    // treating errors
+    const [errors, setErrors] = useState(null)
+
+
     const httpConfig = (data, method) => {
-        if(method === 'POST') {
+        if (method === 'POST') {
             setConfig({
                 method,
                 headers: {
@@ -26,15 +30,20 @@ export const useFetch = (url) => {
     }
 
     useEffect(() => {
-        const fetchData = async() => {
+        const fetchData = async () => {
 
             setLoading(true)
 
-            const res = await fetch(url)
+            try {
 
-            const json = await res.json()
+                const res = await fetch(url)
 
-            setData(json)
+                const json = await res.json()
+
+                setData(json)
+            } catch (error) {
+                setErrors("Something went wrong!")
+            }
 
             setLoading(false)
         }
@@ -44,14 +53,14 @@ export const useFetch = (url) => {
     }, [url, callFetch])
 
     useEffect(() => {
-        if(method === 'POST'){
-            const httpRequest = async() => {
+        if (method === 'POST') {
+            const httpRequest = async () => {
                 let fetchOptions = [url, config]
-    
+
                 const res = await fetch(...fetchOptions)
-    
+
                 const json = await res.json()
-    
+
                 setCallFetch(json)
             }
 
@@ -59,5 +68,5 @@ export const useFetch = (url) => {
         }
     }, [config, method, url])
 
-    return { data, httpConfig, loading };
+    return { data, httpConfig, loading, errors };
 }
