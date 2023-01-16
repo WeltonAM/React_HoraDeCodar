@@ -26,7 +26,7 @@ function App() {
   //   fetchData()
   // }, [])
 
-  const { data: items } = useFetch(url)
+  const { data: items, httpConfig } = useFetch(url)
 
   // Posting data
   const handleSubmit = async (e) => {
@@ -37,18 +37,21 @@ function App() {
       price,
     }
 
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(product)
-    })
+    // const res = await fetch(url, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(product)
+    // })
 
-    // Dynamic loading
-    const addedProduct = await res.json()
+    // // Dynamic loading
+    // const addedProduct = await res.json()
 
-    setProducts((prevProducts) => [...prevProducts, addedProduct])
+    // setProducts((prevProducts) => [...prevProducts, addedProduct])
+
+    // Refactoring Product
+    httpConfig(product, "POST")
 
     setName("")
     setPrice("")
