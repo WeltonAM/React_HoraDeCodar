@@ -2,27 +2,31 @@ import './App.css';
 
 import { useState, useEffect } from 'react'
 
+import { useFetch } from './hooks/useFetch';
+
 function App() {
 
   const [products, setProducts] = useState([])
   const [name, setName] = useState("")
   const [price, setPrice] = useState("")
-  
+
   const url = "http://localhost:3000/products"
 
   // Getting data
-  useEffect(() => {
-    async function fetchData(){
-      const res = await fetch(url)
-  
-      const data = await res.json()
-  
-      setProducts(data)
+  // useEffect(() => {
+  //   async function fetchData(){
+  //     const res = await fetch(url)
 
-    }
+  //     const data = await res.json()
 
-    fetchData()
-  }, [])
+  //     setProducts(data)
+
+  //   }
+
+  //   fetchData()
+  // }, [])
+
+  const { data: items } = useFetch(url)
 
   // Posting data
   const handleSubmit = async (e) => {
@@ -55,8 +59,8 @@ function App() {
     <div className="App">
       <h1>Products list</h1>
 
-      <ul style={{listStyle: 'none', padding: '0'}}>
-        {products.map((product) => (
+      <ul style={{ listStyle: 'none', padding: '0' }}>
+        {items && items.map((product) => (
           <li key={product.id}>{product.name} - R$: {product.price}</li>
         ))}
       </ul>
