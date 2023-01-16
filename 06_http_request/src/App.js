@@ -26,7 +26,7 @@ function App() {
   //   fetchData()
   // }, [])
 
-  const { data: items, httpConfig } = useFetch(url)
+  const { data: items, httpConfig, loading } = useFetch(url)
 
   // Posting data
   const handleSubmit = async (e) => {
@@ -61,6 +61,8 @@ function App() {
   return (
     <div className="App">
       <h1>Products list</h1>
+
+      {loading && <p>Loading data...</p>}
 
       <ul style={{ listStyle: 'none', padding: '0' }}>
         {items && items.map((product) => (
