@@ -1,16 +1,34 @@
-import { useContext } from 'react'
 import ChangeCounter from '../components/ChangeCounter'
-import { CounterContext } from '../context/CounterContext'
+// import { useContext } from 'react'
+// import { CounterContext } from '../context/CounterContext'
+
+import { useCounterContext } from '../hooks/useCounterContext'
+import { useTitleColorContext } from '../hooks/useTitleColorContext'
 
 const Home = () => {
 
-  const { counter } = useContext(CounterContext)
+  // const { counter } = useContext(CounterContext)
+  const { counter } = useCounterContext()
+  const { color, dispatch } = useTitleColorContext()
+
+  const setTitleColor = (color) => {
+    dispatch({ type: color})
+  }
 
   return (
     <div>
-      <h1>Home</h1>
+      
+      <h3 style={{color: color}}>Home</h3>
+      
       <p>Counter value = {counter}</p>
-      <ChangeCounter/>
+      
+      <ChangeCounter />
+      
+      <div>
+        <button onClick={() => setTitleColor("RED")}>Red</button>  
+        <button onClick={() => setTitleColor("BLUE")}>Blue</button>  
+      </div>
+
     </div>
   )
 }
