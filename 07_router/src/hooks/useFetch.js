@@ -2,21 +2,14 @@ import { useState, useEffect } from 'react'
 
 export const useFetch = (url) => {
     const [data, setData] = useState(null)
-
-    // refactoring POST
     const [config, setConfig] = useState(null)
     const [method, setMethod] = useState(null)
     const [callFetch, setCallFetch] = useState(null)
-
-    // loading
     const [loading, setLoading] = useState(false)
-
-    // treating errors
     const [errors, setErrors] = useState(null)
-
-    // getting id
     const [itemId, setItemId] = useState(null)
 
+    // config the methods
     const httpConfig = (data, method) => {
         if (method === 'POST') {
             setConfig({
@@ -41,6 +34,7 @@ export const useFetch = (url) => {
         }
     }
 
+    // get method
     useEffect(() => {
         const fetchData = async () => {
 
@@ -64,6 +58,7 @@ export const useFetch = (url) => {
 
     }, [url, callFetch])
 
+    // others methods
     useEffect(() => {
         const httpRequest = async () => {
             
