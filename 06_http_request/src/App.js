@@ -1,12 +1,12 @@
 import './App.css';
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import { useFetch } from './hooks/useFetch';
 
 function App() {
 
-  const [products, setProducts] = useState([])
+  // const [products, setProducts] = useState([])
   const [name, setName] = useState("")
   const [price, setPrice] = useState("")
 
@@ -55,7 +55,10 @@ function App() {
 
     setName("")
     setPrice("")
+  }
 
+  const handleDelete = (id) => {
+    httpConfig(id, 'DELETE')
   }
 
   return (
@@ -67,7 +70,8 @@ function App() {
       {!errors &&
         <ul style={{ listStyle: 'none', padding: '0' }}>
           {items && items.map((product) => (
-            <li key={product.id}>{product.name} - R$: {product.price}</li>
+            <li key={product.id}>{product.name} - R$: {product.price}
+            <button onClick={() => handleDelete(product.id)}>Delete</button></li>
           ))}
         </ul>
 

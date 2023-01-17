@@ -24,11 +24,6 @@
       "name": "Socks",
       "price": "8.99",
       "id": 5
-    },
-    {
-      "name": "Gloves",
-      "price": "12.50",
-      "id": 6
     }
   ]
 }
