@@ -1,0 +1,26 @@
+nav{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.473);
+    margin-bottom: 50px;
+}
+
+nav a{
+    margin-right: 15px;
+    padding: 5px;
+    text-decoration: none;
+    color: #000;
+}
+
+nav a:hover{
+    background-color: rgba(0, 0, 0, 0.473);
+    color: #fff;
+}
+
+/* Automatically activate in the btn */
+.active{
+    background-color: rgba(0, 0, 0, 0.237);
+    color: #000;
+    border-radius: 2px;
+}
