@@ -11,10 +11,13 @@ nav a{
 }
 
 nav a:hover{
-    color: #ccc;
+    background-color: rgba(0, 0, 0, 0.473);
+    color: #fff;
 }
 
-.ative{
-    background-color: #000;
-    color: #fff;
+/* Automatically activate in the btn */
+.active{
+    background-color: rgba(0, 0, 0, 0.237);
+    color: #000;
+    border-radius: 2px;
 }
