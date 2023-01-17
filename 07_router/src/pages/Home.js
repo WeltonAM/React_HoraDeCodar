@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import { useFetch } from "../hooks/useFetch"
 
+import SearchForm from "../components/SearchForm"
+
 import './Home.css'
 
 const Home = () => {
@@ -16,6 +18,8 @@ const Home = () => {
       {errors && <p>{errors}</p>}
 
       {loading && <p>Loading data...</p>}
+
+      <SearchForm />
 
       <ul className="products">
         {items && items.map((item) => (
