@@ -2,7 +2,7 @@ import styles from './Footer.module.css'
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className={styles.footer}>
         <h3>Write about you like most!</h3>
         <p>MiniBlog &copy; {new Date().getFullYear()}</p>
     </footer>
