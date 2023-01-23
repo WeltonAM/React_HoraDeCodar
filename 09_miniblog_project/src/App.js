@@ -1,7 +1,8 @@
 import './App.css';
 
-
 import { BrowserRouter, Routes, Route, RouterProps, Navigate } from "react-router-dom"
+
+import { AuthProvider } from './context/AuthContext';
 
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
@@ -13,24 +14,27 @@ import Register from './pages/register/Register';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <AuthProvider>
 
-        <Navbar />
+        <BrowserRouter>
 
-        <div className='container'>
+          <Navbar />
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Routes>
+          <div className='container'>
 
-        </div>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Routes>
 
-        <Footer />
+          </div>
 
-      </BrowserRouter>
+          <Footer />
+
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }
