@@ -3,6 +3,7 @@ import styles from './CreatePost.module.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useAuthValue } from '../../context/AuthContext'
+import { useInsertDocument } from '../../hooks/useInsertDocument'
 
 const CreatePost = () => {
 
@@ -12,18 +13,34 @@ const CreatePost = () => {
   const [tags, setTags] = useState([])
   const [formError, setFormError] = useState("")
 
+  const { user } = useAuthValue()
+
+  const { insertDocument, response } = useInsertDocument("posts")
+
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    setFormError("")
+
+    insertDocument({
+      title,
+      image,
+      body,
+      tags,
+      uid: user.uid,
+      createdBy: user.displayName
+    })
+
   }
 
   return (
     <div className={styles.create_post}>
- 
+
       <h3>Create a post</h3>
 
       <p>Write about any knowledge you'd like the world should know about</p>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           <span>Title:</span>
           <input
@@ -72,14 +89,13 @@ const CreatePost = () => {
           />
         </label>
 
-        <button className='btn'>Create Post</button>
+        {!response.loading && <button className='btn'>Create post</button>}
+
+        {response.loading && <button className='btn' disabled>Creating...</button>}
+
+        {response.error && <p className='error'>{response.error}</p>}
       </form>
-{/* 
-      {!loading && <button className='btn'>Register</button>}
 
-      {loading && <button className='btn' disabled>Registering...</button>}
-
-      {error && <p className='error'>{error}</p>} */}
 
     </div>
   )
