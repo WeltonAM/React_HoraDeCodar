@@ -18,17 +18,23 @@ import Register from './pages/register/Register';
 function App() {
 
   const [user, setUser] = useState(undefined)
-  const {auth} = useAuthentication()
+  const { auth } = useAuthentication()
 
   const loadingUser = user === undefined
 
-  if(loadingUser){
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUser(user)
+    })
+  }, [auth])
+
+  if (loadingUser) {
     return <p>Loading...</p>
   }
 
   return (
     <div className="App">
-      <AuthProvider>
+      <AuthProvider value={{ user }}>
 
         <BrowserRouter>
 
