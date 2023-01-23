@@ -9,6 +9,7 @@ import {
 } from 'firebase/auth'
 
 import { useState, useEffect } from 'react'
+import { auth } from "@firebase/util"
 
 export const useAuthentication = () => {
     const [error, setError] = useState(null)
@@ -47,9 +48,6 @@ export const useAuthentication = () => {
             return user
 
         } catch (error) {
-            console.log(error.message)
-            console.log(typeof error.message)
-
             let systemErrorMessage
             if(error.message.includes("Password")){
                 systemErrorMessage = "Password should be at least 6 characters!"
@@ -70,6 +68,30 @@ export const useAuthentication = () => {
         signOut(auth)
     }
 
+    const login = async(data) => {
+        checkIfIsCancelled()
+
+        setLoading(true)
+        setError(false)
+
+        try {
+            await signInWithEmailAndPassword(auth, data.email, data.password)
+            setLoading(false)
+        } catch (error) {
+            let systemErrorMessage
+            if(error.message.includes("user-nor-found")){
+                systemErrorMessage = "User not found!"
+            } else if(error.message.includes("wrong-password")){
+                systemErrorMessage = "User or password wrong!"
+            } else {
+                systemErrorMessage = "Something went wrong!"
+            }
+
+            setError(systemErrorMessage)
+            setLoading(false)
+        }
+    }
+
     useEffect(() => {
         setCancelled(true)
     }, [])
@@ -80,5 +102,6 @@ export const useAuthentication = () => {
         error,
         loading,
         logout,
+        login,
     }
 }
