@@ -1,0 +1,31 @@
+.post_container{
+    text-align: justify;
+    padding: 30px;
+}
+
+.text{
+    display: flex;
+    flex-direction: row;
+}
+
+.post_container img{
+    margin: 0 10px 10px 0;
+    max-width: 300px;
+    max-height: 200px;
+}
+
+.post_container h4{
+    margin-bottom: .2em;
+}
+
+.post_container .tags{
+    display: flex;
+}
+
+.tags p{
+    margin-right: 1em;
+}
+
+.tags span{
+    font-weight: bold;
+}
