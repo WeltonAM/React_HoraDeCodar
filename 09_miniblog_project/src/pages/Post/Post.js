@@ -15,7 +15,7 @@ const Post = () => {
             {post && (
                 <>
                     <h3>{post.title}</h3>
-                    <div className={styles.text}>
+                    <div>
                         <img src={post.image} alt={post.title} />
                         <p>{post.body}</p>
                     </div>
