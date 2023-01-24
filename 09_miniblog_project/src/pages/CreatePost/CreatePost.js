@@ -30,7 +30,7 @@ const CreatePost = () => {
       setFormError("You need to send a URL to the image")
     }
 
-    const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase())
+    const tagsArray = tags.split(", ").map((tag) => tag.trim().toLowerCase())
 
     if(!title || !image || !tags || !body){
       setFormError("Fill the fields before sending!")

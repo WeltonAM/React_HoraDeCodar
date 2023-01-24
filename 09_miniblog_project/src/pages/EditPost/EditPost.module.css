@@ -1,0 +1,32 @@
+.edit_post{
+    text-align: center;
+}
+
+.edit_post h3{
+    font-size: 2.2em;
+}
+
+.edit_post p{
+    color: #aaa;
+    margin-bottom: 2em;
+}
+
+.edit_post img{
+    max-width: 300px;
+    max-height: 200px;
+    margin-bottom: 1em;
+}
+
+.edit_post form{
+    max-width: 80%;
+    margin-bottom: 50px;
+}
+
+.edit_post form textarea{
+    border: 1px solid #ccc;
+    resize: none;
+    text-align: justify;
+    letter-spacing: 1px;
+    padding: 10px;
+    text-indent: 20px;
+}
