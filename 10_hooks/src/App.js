@@ -1,6 +1,7 @@
 import './App.css';
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { HookUseContext } from './components/HookUseContext';
 
 import Home from './pages/Home';
 import About from './pages/About';
@@ -8,27 +9,30 @@ import About from './pages/About';
 function App() {
   return (
     <div className="App">
-      <h1>React Hooks</h1>
+      <HookUseContext>
+        <h1>React Hooks</h1>
 
-      <BrowserRouter>
-        <ul style={{listStyleType: "none", padding: "0"}}>
+        <BrowserRouter>
+          <ul style={{ listStyleType: "none", padding: "0" }}>
 
-          <li>
-            <Link to="/">Home</Link>
-          </li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
 
-          <li>
-            <Link to="/about">About</Link>
-          </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
 
-        </ul>
+          </ul>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
 
-      </BrowserRouter>
+        </BrowserRouter>
+
+      </HookUseContext>
 
     </div>
   );
