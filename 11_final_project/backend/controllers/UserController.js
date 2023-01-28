@@ -45,13 +45,13 @@ const login = async (req, res) => {
     const user = await User.findOne({ email })
 
     if (!user) {
-        res.status(404).json({errors: ["User not found!"]})
+        res.status(404).json({ errors: ["User not found!"] })
         return
     }
 
-    if (!(await bcrypt.compare(password, user.password))){
-        res.status(422).json({errors: ["Email or password invalid."]})
-        return 
+    if (!(await bcrypt.compare(password, user.password))) {
+        res.status(422).json({ errors: ["Email or password invalid."] })
+        return
     }
 
     res.status(201).json({
@@ -61,7 +61,14 @@ const login = async (req, res) => {
     })
 }
 
+const getCurrentUser = async (req, res) => {
+    const user = req.user
+
+    res.status(200).json(user)
+}
+
 module.exports = {
     register,
-    login
+    login,
+    getCurrentUser
 }
