@@ -92,11 +92,11 @@ const update = async (req, res) => {
         user.password = passwordHash
     }
 
-    if(profileImage){
+    if (profileImage) {
         user.profileImage = profileImage
     }
 
-    if(bio){
+    if (bio) {
         user.bio = bio
     }
 
@@ -105,9 +105,29 @@ const update = async (req, res) => {
     res.status(200).json(user)
 }
 
+const getUserById = async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const user = await User.findById(mongoose.Types.ObjectId(id)).select("-password")
+
+        if (!user) {
+            res.status(404).json({ errors: ["User not found!"] })
+            return
+        }
+
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(404).json({ errors: ["User not found!"] })
+        return
+    }
+
+}
+
 module.exports = {
     register,
     login,
     getCurrentUser,
-    update
+    update,
+    getUserById
 }
