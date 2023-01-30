@@ -7,7 +7,7 @@ const conn = async () => {
     try {
         
         const dbConn = await mongoose.connect(
-            `mongodb+srv://${dbUser}:${dbPassword}@cluster0.jcoytpp.mongodb.net/?retryWrites=true&w=majority`
+            `mongodb+srv://${dbUser}:${dbPassword}@cluster0.n0nrrla.mongodb.net/?retryWrites=true&w=majority`
         )
 
         console.log("🧮 DB connected!")
