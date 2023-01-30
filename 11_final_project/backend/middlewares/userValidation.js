@@ -20,8 +20,8 @@ const userCreateValidation = () => {
         body("confirmpassword")
             .isString()
             .withMessage("The password confirmation is required.")
-            .custom((value, {req}) => {
-                if(value != req.body.password){
+            .custom((value, { req }) => {
+                if (value != req.body.password) {
                     throw new Error("The password doesn't match.")
                 }
                 return true
@@ -42,7 +42,21 @@ const loginValidation = () => {
     ]
 }
 
+const userUpdateValidation = () => {
+    return [
+        body("name")
+            .optional()
+            .isLength({ min: 3 })
+            .withMessage("Name needs to have at least 3 characters"),
+        body("password")
+            .optional()
+            .isLength({ min: 5 })
+            .withMessage("Password needs to have at least 5 characters")
+    ]
+}
+
 module.exports = {
     userCreateValidation,
-    loginValidation
+    loginValidation,
+    userUpdateValidation
 }
