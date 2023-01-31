@@ -19,7 +19,7 @@ const insertPhoto = async (req, res) => {
 
     console.log(reqUser)
 
-    if(!newPhoto){
+    if (!newPhoto) {
         res.status(422).json({
             errors: ["Something went wrong. Try again later!"]
         })
@@ -29,32 +29,39 @@ const insertPhoto = async (req, res) => {
     res.status(201).json(newPhoto)
 }
 
-const deletePhoto = async(req, res) => {
-    const {id} = req.params
+const deletePhoto = async (req, res) => {
+    const { id } = req.params
     const reqUser = req.user
 
     try {
         const photo = await Photo.findById(mongoose.Types.ObjectId(id))
 
-        if(!photo){
-            res.status(404).json({errors: ["Photo not found!"]})
+        if (!photo) {
+            res.status(404).json({ errors: ["Photo not found!"] })
             return
         }
-    
-        if(!photo.userId.equals(reqUser._id)){
-            res.status(422).json({errors: ["Something went wrong. Try again later!"]})
+
+        if (!photo.userId.equals(reqUser._id)) {
+            res.status(422).json({ errors: ["Something went wrong. Try again later!"] })
         }
 
         await Photo.findByIdAndDelete(photo._id)
 
-        res.status(200).json({id: photo._id, message: "Photo deleted!"})
+        res.status(200).json({ id: photo._id, message: "Photo deleted!" })
     } catch (error) {
-        res.status(404).json({errors: ["Photo not found!"]})
+        res.status(404).json({ errors: ["Photo not found!"] })
         return
     }
+}
+
+const getAllPhotos = async (req, res) => {
+    const photos = await Photo.find({}).sort([["createdAt", -1]]).exec()
+
+    return res.status(200).json(photos)
 }
 
 module.exports = {
     insertPhoto,
     deletePhoto,
+    getAllPhotos,
 }
