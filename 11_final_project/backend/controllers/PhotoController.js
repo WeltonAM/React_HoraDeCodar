@@ -86,23 +86,46 @@ const updatePhoto = async (req, res) => {
     const reqUser = req.user
     const photo = await Photo.findById(id)
 
-    if(!photo){
-        res.status(404).json({errors: ["Photo not found."]})
+    if (!photo) {
+        res.status(404).json({ errors: ["Photo not found."] })
         return
     }
 
-    if(!photo.userId.equals(reqUser._id)){
-        res.status(422).json({errors: ["Something went wrong. Try again later."]})
+    if (!photo.userId.equals(reqUser._id)) {
+        res.status(422).json({ errors: ["Something went wrong. Try again later."] })
         return
     }
 
-    if(title){
+    if (title) {
         photo.title = title
     }
 
     await photo.save()
 
-    res.status(200).json({photo, message: "Photo updated!"})
+    res.status(200).json({ photo, message: "Photo updated!" })
+}
+
+const likePhoto = async (req, res) => {
+    const { id } = req.params
+    const reqUser = req.user
+    const photo = await Photo.findById(id)
+
+    if (!photo) {
+        res.status(404).json({ errors: ["Photo not found."] })
+        return
+    }
+
+    if(photo.likes.includes(reqUser._id)){
+        res.status(422).json({errors: ["Already liked it."]})
+        // photo.likes.pop(reqUser._id)
+        // photo.save()
+        return
+    }
+
+    photo.likes.push(reqUser._id)
+    photo.save()
+
+    res.status(200).json({photoId: id, userId: reqUser._id, message: "Liked!"})
 
 }
 
@@ -112,5 +135,6 @@ module.exports = {
     getAllPhotos,
     getUserPhotos,
     getPhotoById,
-    updatePhoto
+    updatePhoto,
+    likePhoto
 }
