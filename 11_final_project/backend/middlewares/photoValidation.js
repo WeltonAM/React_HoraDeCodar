@@ -32,7 +32,14 @@ const photoUpdateValidation = () => {
     ]
 }
 
+const commentValidation = () => {
+    return [
+        body("comment").isString().withMessage("Comment is required.")
+    ]
+}
+
 module.exports = {
     photoInsertValidation,
-    photoUpdateValidation
+    photoUpdateValidation,
+    commentValidation
 }
