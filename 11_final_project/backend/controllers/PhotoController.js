@@ -115,8 +115,8 @@ const likePhoto = async (req, res) => {
         return
     }
 
-    if(photo.likes.includes(reqUser._id)){
-        res.status(422).json({errors: ["Already liked it."]})
+    if (photo.likes.includes(reqUser._id)) {
+        res.status(422).json({ errors: ["Already liked it."] })
         // photo.likes.pop(reqUser._id)
         // photo.save()
         return
@@ -125,12 +125,12 @@ const likePhoto = async (req, res) => {
     photo.likes.push(reqUser._id)
     photo.save()
 
-    res.status(200).json({photoId: id, userId: reqUser._id, message: "Liked!"})
+    res.status(200).json({ photoId: id, userId: reqUser._id, message: "Liked!" })
 }
 
-const commentPhoto = async(req, res) => {
-    const {id} = req.params
-    const {comment} = req.body
+const commentPhoto = async (req, res) => {
+    const { id } = req.params
+    const { comment } = req.body
 
     const reqUser = req.user
     const user = await User.findById(reqUser._id)
@@ -158,6 +158,14 @@ const commentPhoto = async(req, res) => {
     })
 }
 
+const searchPhotos = async (req, res) => {
+    const { q } = req.query
+
+    const photos = await Photo.find({ title: new RegExp(q, "i")}).exec()
+
+    res.status(200).json(photos)
+}
+
 module.exports = {
     insertPhoto,
     deletePhoto,
@@ -166,5 +174,6 @@ module.exports = {
     getPhotoById,
     updatePhoto,
     likePhoto,
-    commentPhoto
+    commentPhoto,
+    searchPhotos
 }
