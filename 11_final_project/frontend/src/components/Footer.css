@@ -3,6 +3,7 @@
     height: 150px;
     font-weight: 600;
     font-size: 14px;
+    margin-top: 40px;
     
     display: flex;
     flex-direction: column;

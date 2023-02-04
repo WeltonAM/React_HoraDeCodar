@@ -1,6 +1,7 @@
 import './Auth.css'
 
 import { Link } from 'react-router-dom'
+import Message from '../../components/Message'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -35,6 +36,12 @@ const Register = () => {
   useEffect(() => {
     dispatch(reset())
   }, [dispatch])
+
+  const handleMessage = () => {
+    setTimeout(() => (
+      <Message msg={error} type="error" />
+    ), 4000);
+  }
 
   return (
     <div id="register">
@@ -71,7 +78,12 @@ const Register = () => {
           value={confirmPassword}
         />
 
-        <input type="submit" value="Sign up" />
+        {!loading && <input type="submit" value="Sign up" />}
+
+        {loading && <input type="submit" value="Signing up..." disabled />}
+
+        {error && handleMessage}
+
       </form>
 
       <p>
