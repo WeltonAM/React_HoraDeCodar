@@ -37,12 +37,6 @@ const Register = () => {
     dispatch(reset())
   }, [dispatch])
 
-  const handleMessage = () => {
-    setTimeout(() => (
-      <Message msg={error} type="error" />
-    ), 4000);
-  }
-
   return (
     <div id="register">
       <h2>ReactGram</h2>
@@ -82,7 +76,7 @@ const Register = () => {
 
         {loading && <input type="submit" value="Signing up..." disabled />}
 
-        {error && handleMessage}
+        {error && <Message msg={error} type="error" />}
 
       </form>
 
