@@ -17,8 +17,6 @@ const insertPhoto = async (req, res) => {
         userName: user.name,
     })
 
-    console.log(reqUser)
-
     if (!newPhoto) {
         res.status(422).json({
             errors: ["Something went wrong. Try again later."]
