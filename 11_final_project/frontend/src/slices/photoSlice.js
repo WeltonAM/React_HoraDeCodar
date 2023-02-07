@@ -12,12 +12,12 @@ const initialState = {
 
 export const publishPhoto = createAsyncThunk(
     "photo/publish",
-    async(photo, thunkAPI) => {
+    async (photo, thunkAPI) => {
         const token = thunkAPI.getState().auth.user.token
 
         const data = await photoService.publishPhoto(photo, token)
 
-        if(data.errors){
+        if (data.errors) {
             return thunkAPI.rejectWithValue(data.errors[0])
         }
 
@@ -27,7 +27,7 @@ export const publishPhoto = createAsyncThunk(
 
 export const getUserPhotos = createAsyncThunk(
     "photo/user/photos",
-    async(id, thunkAPI) => {
+    async (id, thunkAPI) => {
         const token = thunkAPI.getState().auth.user.token
         const data = await photoService.getUserPhotos(id, token)
 
@@ -37,11 +37,11 @@ export const getUserPhotos = createAsyncThunk(
 
 export const deletePhoto = createAsyncThunk(
     "photo/delete",
-    async(id, thunkAPI) => {
+    async (id, thunkAPI) => {
         const token = thunkAPI.getState().auth.user.token
         const data = await photoService.deletePhoto(id, token)
 
-        if(data.errors){
+        if (data.errors) {
             return thunkAPI.rejectWithValue(data.errors[0])
         }
 
@@ -51,9 +51,33 @@ export const deletePhoto = createAsyncThunk(
 
 export const updatePhoto = createAsyncThunk(
     "photo/update",
-    async(photoData, thunkAPI) => {
+    async (photoData, thunkAPI) => {
         const token = thunkAPI.getState().auth.user.token
-        const data = await photoService.updatePhoto({title: photoData.title}, photoData.id, token)
+        const data = await photoService.updatePhoto({ title: photoData.title }, photoData.id, token)
+
+        return data
+    }
+)
+
+export const getPhotoById = createAsyncThunk(
+    "photo/getPhoto",
+    async (id, thunkAPI) => {
+        const token = thunkAPI.getState().auth.user.token
+        const data = await photoService.getPhotoById(id, token)
+
+        return data
+    }
+)
+
+export const like = createAsyncThunk(
+    "photo/like",
+    async (id, thunkAPI) => {
+        const token = thunkAPI.getState().auth.user.token
+        const data = await photoService.like(id, token)
+
+        if (data.errors) {
+            return thunkAPI.rejectWithValue(data.errors[0])
+        }
 
         return data
     }
@@ -123,7 +147,7 @@ export const photoSlice = createSlice({
                 state.success = true
                 state.error = null
                 state.photos.map((photo) => {
-                    if(photo._id === action.payload.photo._id){
+                    if (photo._id === action.payload.photo._id) {
                         return photo.title = action.payload.photo.title
                     }
 
@@ -135,6 +159,38 @@ export const photoSlice = createSlice({
                 state.loading = false
                 state.error = action.payload
                 state.photo = {}
+            })
+            .addCase(getPhotoById.pending, (state) => {
+                state.loading = true
+                state.error = null
+            })
+            .addCase(getPhotoById.fulfilled, (state, action) => {
+                state.loading = false
+                state.success = true
+                state.error = null
+                state.photo = action.payload
+            })
+            .addCase(like.fulfilled, (state, action) => {
+                state.loading = false
+                state.success = true
+                state.error = null
+
+                if(state.photo.likes){
+                    state.photo.likes.push(action.payload.userId)
+                }
+
+                state.photos.map((photo) => {
+                    if (photo._id === action.payload.photoId) {
+                        return photo.likes.push(action.payload.userId)
+                    }
+
+                    return photo
+                })
+                state.message = action.payload.message
+            })
+            .addCase(like.rejected, (state, action) => {
+                state.loading = false
+                state.error = action.payload
             })
     }
 })

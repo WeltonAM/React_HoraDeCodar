@@ -11,7 +11,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import { getUserDetails } from '../../slices/userSlice'
-import { getUserPhotos, publishPhoto, resetMessage, deletePhoto, updatePhoto } from '../../slices/photoSlice'
+import { getUserPhotos, publishPhoto, deletePhoto, updatePhoto } from '../../slices/photoSlice'
+import { useResetComponentMessage } from '../../hooks/useResetComponentMessage'
 
 const Profile = () => {
 
@@ -57,14 +58,10 @@ const Profile = () => {
 
     setTitle("")
 
-    resetComponentMessage()
+    resetMessage()
   }
 
-  const resetComponentMessage = () => {
-    setTimeout(() => {
-      dispatch(resetMessage())
-    }, 2000);
-  }
+  const resetMessage = useResetComponentMessage(dispatch)
 
   const handleFile = (e) => {
 
@@ -78,7 +75,7 @@ const Profile = () => {
 
     dispatch(deletePhoto(id))
 
-    resetComponentMessage()
+    resetMessage()
   }
 
   const hideOrShowForms = () => {
@@ -96,7 +93,7 @@ const Profile = () => {
 
     dispatch(updatePhoto(photoData))
 
-    resetComponentMessage()
+    resetMessage()
   }
 
   const handleEdit = (photo) => {
@@ -216,7 +213,7 @@ const Profile = () => {
 
               {id === userAuth._id ? (
                 <div className='actions'>
-                  <Link to={`/photos/${photos._id}`}>
+                  <Link to={`/photos/${photo._id}`}>
                     <BsFillEyeFill />
                   </Link>
 

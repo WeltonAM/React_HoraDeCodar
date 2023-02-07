@@ -115,8 +115,8 @@ const likePhoto = async (req, res) => {
 
     if (photo.likes.includes(reqUser._id)) {
         res.status(422).json({ errors: ["Already liked it."] })
-        // photo.likes.pop(reqUser._id)
-        // photo.save()
+        photo.likes.pop(reqUser._id)
+        photo.save()
         return
     }
 
