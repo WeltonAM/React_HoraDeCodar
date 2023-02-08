@@ -32,7 +32,7 @@ const Login = () => {
   return (
     <div id='login'>
       <h2>ReactGram</h2>
-      <p className='subtitle'>Login to see what brand new!</p>
+      <p className='subtitle'>Login to see what's brand new!</p>
       <form onSubmit={handleSubmit}>
 
         <input type="text" name="email" placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={email} />
