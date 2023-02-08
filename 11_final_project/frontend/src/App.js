@@ -10,6 +10,7 @@ import { useAuth } from './hooks/useAuth';
 import EditProfile from './pages/EditProfile/EditProfile';
 import Profile from './pages/Profile/Profile';
 import Photo from './pages/Photo/Photo';
+import Search from './pages/Search/Search';
 
 function App() {
 
@@ -41,6 +42,8 @@ function App() {
             <Route path='/users/:id' element={auth ? <Profile /> : <Navigate to="/" /> }/>
             
             <Route path='/profile' element={auth ? <EditProfile /> : <Navigate to="/" /> }/>
+
+            <Route path='/search' element={auth ? <Search /> : <Navigate to="/login" /> }/>
             
             <Route path='/photos/:id' element={auth ? <Photo /> : <Navigate to="/login" /> }/>
 
