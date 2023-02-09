@@ -1,0 +1,21 @@
+*{
+    font-family: Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #111;
+    color: #fff;
+}
+
+a{
+    text-decoration: none;
+    color: gold;
+    transition: .5s;
+}
+
+a:hover{
+    color: rgb(200, 176, 39);
+}
